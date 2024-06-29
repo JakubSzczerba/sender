@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13.2
+    ports:
+      - 5449:5432
+    environment:
+      POSTGRES_USER: your_user
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: sender
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+  php:
+    build:
+      context: ./docker/php
+    volumes:
+      - .:/var/www/sender:delegated
+    links:
+      - db
+    environment:
+      DATABASE_URL: "postgresql://your_user:your_password@db:5432/sender"
+      APP_URL: "http://sender.local:8099"
+      APP_ENV: "dev"
+      APP_SECRET: "your_app_secret"
+      APP_HOSTNAME: "sender.local"
+  nginx:
+    image: nginx:1.19
+    ports:
+      - "8099:80"
+    volumes:
+      - .:/var/www/sender:delegated
+      - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - php
+volumes:
+  db-data:
