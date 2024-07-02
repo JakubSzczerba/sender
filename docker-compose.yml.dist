@@ -23,6 +23,9 @@ services:
       APP_ENV: "dev"
       APP_SECRET: "your_app_secret"
       APP_HOSTNAME: "sender.local"
+      MESSENGER_TRANSPORT_DSN: "your_transport"
+      OPEN_WEATHER_MAP_API_KEY: "your_key"
+      OPEN_WEATHER_MAP_API_URL: "https://api.openweathermap.org/data/2.5/weather?"
   nginx:
     image: nginx:1.19
     ports:

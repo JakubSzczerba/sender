@@ -1,5 +1,4 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: Sender\Controller
-    type: attribute
+weather_by_city:
+  path: /weather/{city}
+  controller: Sender\Sender\SomeController::getWeatherByCity
+  methods: [GET]

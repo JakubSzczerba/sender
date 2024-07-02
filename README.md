@@ -15,6 +15,7 @@ cp docker-compose.yml.dist docker-compose.yml
 - `POSTGRES_PASSWORD` with your database password
 - `APP_SECRET` with your application secret
 - `DATABASE_URL` with your actual database connection string
+- `MESSENGER_TRANSPORT_DSN` with your transport, suggest: `doctrine://default?auto_setup=0`
 - `API` and rest of configuration parameters. 
 
 **3. Start the Docker containers**
