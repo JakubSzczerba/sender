@@ -26,6 +26,8 @@ services:
       MESSENGER_TRANSPORT_DSN: "your_transport"
       OPEN_WEATHER_MAP_API_KEY: "your_key"
       OPEN_WEATHER_MAP_API_URL: "https://api.openweathermap.org/data/2.5/weather?"
+      FACEBOOK_PAGE_ACCESS_TOKEN: "your_token"
+      FACEBOOK_BASE_URL: "https://graph.facebook.com/v11.0/me/messages?"
   nginx:
     image: nginx:1.19
     ports:

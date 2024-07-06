@@ -1,5 +1,6 @@
 imports:
     - { resource: 'services/weather/api/open_weather_map_client.yaml' }
+    - { resource: 'services/facebook/api/facebook_client.yaml' }
 
 services:
     GuzzleHttp\Client:

@@ -1,0 +1,14 @@
+parameters:
+  facebook_page_access_token: '%env(FACEBOOK_PAGE_ACCESS_TOKEN)%'
+  facebook_base_url: '%env(FACEBOOK_BASE_URL)%'
+
+services:
+  Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Api\Client\FacebookClient:
+    class: Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Api\Client\FacebookClient
+    arguments:
+      $pageAccessToken: '%facebook_page_access_token%'
+      $baseUrl: '%facebook_base_url%'
+      $client: '@GuzzleHttp\Client'
+
+  Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Api\SendMessageInterface:
+    alias: Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Api\Client\FacebookClient

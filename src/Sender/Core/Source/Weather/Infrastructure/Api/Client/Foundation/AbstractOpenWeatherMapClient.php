@@ -24,8 +24,7 @@ abstract class AbstractOpenWeatherMapClient
         string $apiKey,
         string $baseUrl,
         Client $client
-    )
-    {
+    ) {
         $this->apiKey = $apiKey;
         $this->baseUrl = $baseUrl;
         $this->client = $client;
