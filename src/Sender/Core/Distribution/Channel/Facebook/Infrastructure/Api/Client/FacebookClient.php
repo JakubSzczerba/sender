@@ -17,9 +17,8 @@ final class FacebookClient extends AbstractFacebookClient implements SendMessage
 {
     public function sendMessageToGroup(string $groupId, string $message): JsonResponse
     {
-        $request = $this->startConnection();
-
-        $response = $this->client->post($request, [
+        $url = $this->startConnection();
+        $response = $this->client->post($url, [
             'json' => [
                 'recipient' => ['id' => $groupId],
                 'message' => ['text' => $message],

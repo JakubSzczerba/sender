@@ -2,3 +2,8 @@ weather_by_city:
   path: /weather/{city}
   controller: Sender\Sender\SomeController::getWeatherByCity
   methods: [GET]
+
+send_message:
+  path: /send-message
+  controller: Sender\Sender\SomeController::sendMessageToGroup
+  methods: [GET]

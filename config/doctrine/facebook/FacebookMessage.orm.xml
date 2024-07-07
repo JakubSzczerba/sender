@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This file was created by Jakub Szczerba
+    Contact: https://www.linkedin.com/in/jakub-szczerba-3492751b4/
+-->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Sender\Sender\Core\Distribution\Channel\Facebook\Domain\Entity\FacebookMessage" table="facebook_messages">
+        <id name="id" type="uuid">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
+        </id>
+        <field name="messageId" type="string" length="255" nullable="false"/>
+        <field name="groupId" type="string" length="255" nullable="false"/>
+        <field name="userId" type="string" length="255" nullable="false"/>
+        <field name="message" type="text" nullable="false"/>
+        <field name="sentAt" type="datetime_immutable" nullable="false"/>
+        <field name="status" type="string" length="50" nullable="false"/>
+    </entity>
+
+</doctrine-mapping>

@@ -28,6 +28,10 @@ services:
       OPEN_WEATHER_MAP_API_URL: "https://api.openweathermap.org/data/2.5/weather?"
       FACEBOOK_PAGE_ACCESS_TOKEN: "your_token"
       FACEBOOK_BASE_URL: "https://graph.facebook.com/v11.0/me/messages?"
+      SELENIUM_HOST: "http://selenium:4444/wd/hub"
+      FACEBOOK_EMAIL: "your_email@com"
+      FACEBOOK_PASSWORD: "your_password"
+      FACEBOOK_GROUP_ID: "some_id"
   nginx:
     image: nginx:1.19
     ports:
@@ -35,6 +39,12 @@ services:
     volumes:
       - .:/var/www/sender:delegated
       - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - php
+  selenium:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
     depends_on:
       - php
 volumes:

@@ -9,30 +9,16 @@ declare(strict_types=1);
 
 namespace Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Api\Client\Foundation;
 
-use GuzzleHttp\Client;
+use Sender\Sender\Core\Base\Api\Client\AbstractApiClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-abstract class AbstractFacebookClient
+abstract class AbstractFacebookClient extends AbstractApiClient
 {
-    protected string $pageAccessToken;
-
-    protected string $baseUrl;
-
-    protected Client $client;
-
-    public function __construct(
-        string $pageAccessToken,
-        string $baseUrl,
-        Client $client
-    ) {
-        $this->pageAccessToken = $pageAccessToken;
-        $this->baseUrl = $baseUrl;
-        $this->client = $client;
-    }
-
-    protected function startConnection(): string
+    protected function startConnection(array $params = []): string
     {
-        return "{$this->baseUrl}access_token=" . $this->pageAccessToken;
+        $params['access_token'] = $this->key;
+
+        return $this->url . http_build_query($params);
     }
 
     abstract public function sendMessageToGroup(string $groupId, string $message): JsonResponse;

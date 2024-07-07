@@ -13,3 +13,4 @@ services:
         autoconfigure: true
         arguments:
             $cityWeather: '@Sender\Sender\Core\Source\Weather\Infrastructure\Api\CityWeatherInterface'
+            $sendMessageService: '@Sender\Sender\Core\Distribution\Channel\Facebook\Application\Service\SendMessageService'

@@ -15,6 +15,10 @@ doctrine:
                 type: xml
                 dir: '%kernel.project_dir%/config/doctrine/weather'
                 prefix: 'Sender\Sender\Core\Source\Weather\Domain\Entity'
+            FacebookMessage:
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/facebook'
+                prefix: 'Sender\Sender\Core\Distribution\Channel\Facebook\Domain\Entity'
         controller_resolver:
             auto_mapping: false
 

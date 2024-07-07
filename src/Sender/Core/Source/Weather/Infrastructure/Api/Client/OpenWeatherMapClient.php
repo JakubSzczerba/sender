@@ -17,8 +17,8 @@ final class OpenWeatherMapClient extends AbstractOpenWeatherMapClient implements
 {
     public function getWeatherByCity(string $city): JsonResponse
     {
-        $request = $this->startConnection() . "&q={$city}";
-        $response = $this->client->request('GET', $request);
+        $url = $this->startConnection() . "&q={$city}";
+        $response = $this->client->get($url);
 
         return new JsonResponse(
             json_decode(
