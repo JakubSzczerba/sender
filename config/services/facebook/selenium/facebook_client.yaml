@@ -1,0 +1,15 @@
+parameters:
+  selenium_host: '%env(SELENIUM_HOST)%'
+  facebook_email: '%env(FACEBOOK_EMAIL)%'
+  facebook_password: '%env(FACEBOOK_PASSWORD)%'
+  facebook_group_id: '%env(FACEBOOK_GROUP_ID)%'
+
+services:
+  Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Selenium\Client\FacebookClient:
+    arguments:
+      $host: '%selenium_host%'
+      $email: '%facebook_email%'
+      $password: '%facebook_password%'
+
+  Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Selenium\SendMessageInterface:
+    alias: Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Selenium\Client\FacebookClient

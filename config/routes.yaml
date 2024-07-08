@@ -7,3 +7,8 @@ send_message:
   path: /send-message
   controller: Sender\Sender\SomeController::sendMessageToGroup
   methods: [GET]
+
+generate_text:
+  path: /generate-text
+  controller: Sender\Sender\SomeController::generateText
+  methods: [GET]

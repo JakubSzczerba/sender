@@ -9,24 +9,28 @@ declare(strict_types=1);
 
 namespace Sender\Sender;
 
-use Sender\Sender\Core\Distribution\Channel\Facebook\Application\Service\SendMessageService;
+use Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Selenium\SendMessageInterface;
+use Sender\Sender\Core\Message\Infrastructure\Api\WeatherMessageGeneratorInterface;
 use Sender\Sender\Core\Source\Weather\Infrastructure\Api\CityWeatherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\env;
 
 class SomeController extends AbstractController
 {
     private CityWeatherInterface $cityWeather;
 
-    private SendMessageService $sendMessageService;
+    private SendMessageInterface $sendMessage;
+
+    private WeatherMessageGeneratorInterface $weatherMessageGenerator;
 
     public function __construct(
         CityWeatherInterface $cityWeather,
-        SendMessageService $sendMessageService
+        SendMessageInterface $sendMessage,
+        WeatherMessageGeneratorInterface $weatherMessageGenerator
     ) {
         $this->cityWeather = $cityWeather;
-        $this->sendMessageService = $sendMessageService;
+        $this->sendMessage = $sendMessage;
+        $this->weatherMessageGenerator = $weatherMessageGenerator;
     }
 
     public function getWeatherByCity(string $city): JsonResponse
@@ -37,8 +41,15 @@ class SomeController extends AbstractController
     public function sendMessageToGroup(): JsonResponse
     {
         $groupId = $this->getParameter('facebook_group_id');
-        $this->sendMessageService->sendMessageToGroup($groupId, 'Test wiadomości');
+        $message = '2nd test after change file path and client refactor';
 
-        return new JsonResponse(['status' => 'Message sent successfully']);
+        return $this->sendMessage->sendMessageToGroup($groupId, $message);
+    }
+
+    public function generateText(): string
+    {
+        $weatherData = $this->cityWeather->getWeatherByCity('');
+
+        return $this->weatherMessageGenerator->generateWeatherMessage($weatherData);
     }
 }

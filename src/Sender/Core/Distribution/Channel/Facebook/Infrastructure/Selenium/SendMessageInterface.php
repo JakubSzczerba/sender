@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Api;
+namespace Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Selenium;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 

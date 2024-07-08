@@ -9,11 +9,27 @@ declare(strict_types=1);
 
 namespace Sender\Sender\Core\Source\Weather\Infrastructure\Api\Client\Foundation;
 
-use Sender\Sender\Core\Base\Api\Client\AbstractApiClient;
+use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-abstract class AbstractOpenWeatherMapClient extends AbstractApiClient
+abstract class AbstractOpenWeatherMapClient
 {
+    protected string $key;
+
+    protected string $url;
+
+    protected Client $client;
+
+    public function __construct(
+        string $key,
+        string $url,
+        Client $client
+    ) {
+        $this->key = $key;
+        $this->url = $url;
+        $this->client = $client;
+    }
+
     protected function startConnection(array $params = []): string
     {
         $params['appid'] = $this->key;

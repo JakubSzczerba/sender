@@ -1,6 +1,7 @@
 imports:
     - { resource: 'services/weather/api/open_weather_map_client.yaml' }
-    - { resource: 'services/facebook/api/facebook_client.yaml' }
+    - { resource: 'services/facebook/selenium/facebook_client.yaml' }
+    - { resource: 'services/openAi/api/open_ai_client.yaml' }
 
 services:
     GuzzleHttp\Client:
@@ -13,4 +14,4 @@ services:
         autoconfigure: true
         arguments:
             $cityWeather: '@Sender\Sender\Core\Source\Weather\Infrastructure\Api\CityWeatherInterface'
-            $sendMessageService: '@Sender\Sender\Core\Distribution\Channel\Facebook\Application\Service\SendMessageService'
+            $sendMessage: '@Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Selenium\SendMessageInterface'
