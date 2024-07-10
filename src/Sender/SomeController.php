@@ -48,7 +48,7 @@ class SomeController extends AbstractController
 
     public function generateText(): string
     {
-        $weatherData = $this->cityWeather->getWeatherByCity('');
+        $weatherData = $this->cityWeather->getWeatherByCity('Słupsk');
 
         return $this->weatherMessageGenerator->generateWeatherMessage($weatherData);
     }

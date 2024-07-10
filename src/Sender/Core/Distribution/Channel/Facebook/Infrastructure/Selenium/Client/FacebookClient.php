@@ -32,7 +32,7 @@ final class FacebookClient extends AbstractFacebookClient implements SendMessage
             $loginButton = $driver->findElement(WebDriverBy::name('login'));
             $driver->executeScript('arguments[0].click();', [$loginButton]); sleep(random_int(2, 13));
 
-            $driver->get('https://www.facebook.com/messages/t/' . $groupId); sleep(random_int(1, 12));
+            $driver->get('https://www.facebook.com/messages/t/' . $groupId); sleep(random_int(6, 12));
 
             $messageBox = $driver->findElement(WebDriverBy::cssSelector('div[aria-label="Wiadomość"][contenteditable="true"]'));
             $messageBox->sendKeys($message); sleep(random_int(3, 9));
