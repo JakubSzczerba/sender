@@ -23,6 +23,14 @@ services:
       APP_ENV: "dev"
       APP_SECRET: "your_app_secret"
       APP_HOSTNAME: "sender.local"
+      MESSENGER_TRANSPORT_DSN: "your_transport"
+      OPEN_WEATHER_MAP_API_KEY: "your_key"
+      OPEN_WEATHER_MAP_API_URL: "https://api.openweathermap.org/data/2.5/weather?"
+      SELENIUM_HOST: "http://selenium:4444/wd/hub"
+      FACEBOOK_EMAIL: "your_email@com"
+      FACEBOOK_PASSWORD: "your_password"
+      FACEBOOK_GROUP_ID: "some_id"
+      OPEN_AI_API_KEY: "your_key"
   nginx:
     image: nginx:1.19
     ports:
@@ -30,6 +38,12 @@ services:
     volumes:
       - .:/var/www/sender:delegated
       - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - php
+  selenium:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
     depends_on:
       - php
 volumes:

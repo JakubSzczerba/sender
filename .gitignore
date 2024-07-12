@@ -1,4 +1,5 @@
 /.idea
+/public/screenshots/
 /docker-compose.yml
 ###> symfony/framework-bundle ###
 /.env.local

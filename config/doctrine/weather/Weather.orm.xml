@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This file was created by Jakub Szczerba
+    Contact: https://www.linkedin.com/in/jakub-szczerba-3492751b4/
+-->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Sender\Sender\Core\Source\Weather\Domain\Entity\Weather" table="weather">
+        <id name="id" type="uuid">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
+        </id>
+        <field name="temperature" type="float" nullable="false"/>
+        <field name="cloudiness" type="float" nullable="false"/>
+        <field name="wind" type="string" length="255" nullable="false"/>
+        <field name="description" type="string" length="255" nullable="false"/>
+        <field name="longitude" type="string" length="255" nullable="false"/>
+        <field name="latitude" type="string" length="255" nullable="false"/>
+        <field name="city" type="string" length="150" nullable="false"/>
+        <field name="createdAt" type="datetime_immutable" nullable="false"/>
+    </entity>
+
+</doctrine-mapping>
