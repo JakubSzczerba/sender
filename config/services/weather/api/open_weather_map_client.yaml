@@ -1,0 +1,14 @@
+parameters:
+  open_weather_map_api_key: '%env(OPEN_WEATHER_MAP_API_KEY)%'
+  open_weather_map_api_url: '%env(OPEN_WEATHER_MAP_API_URL)%'
+
+services:
+  Sender\Sender\Core\Source\Weather\Infrastructure\Api\Client\OpenWeatherMapClient:
+    class: Sender\Sender\Core\Source\Weather\Infrastructure\Api\Client\OpenWeatherMapClient
+    arguments:
+      $key: '%open_weather_map_api_key%'
+      $url: '%open_weather_map_api_url%'
+      $client: '@GuzzleHttp\Client'
+
+  Sender\Sender\Core\Source\Weather\Infrastructure\Api\CityWeatherInterface:
+    alias: Sender\Sender\Core\Source\Weather\Infrastructure\Api\Client\OpenWeatherMapClient

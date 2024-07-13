@@ -1,0 +1,12 @@
+parameters:
+  open_ai_api_key: '%env(OPEN_AI_API_KEY)%'
+
+services:
+  Sender\Sender\Core\Message\Infrastructure\Api\Client\OpenAIClient:
+    class: Sender\Sender\Core\Message\Infrastructure\Api\Client\OpenAIClient
+    arguments:
+      $key: '%open_ai_api_key%'
+      $logger: '@logger'
+
+  Sender\Sender\Core\Message\Infrastructure\Api\WeatherMessageGeneratorInterface:
+    alias: Sender\Sender\Core\Message\Infrastructure\Api\Client\OpenAIClient
