@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Sender\Sender\Core\Distribution\Channel\Facebook\Infrastructure\Selenium\Client;
 
+use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverBy;
@@ -22,7 +23,13 @@ final class FacebookClient extends AbstractFacebookClient implements SendMessage
         string $groupId,
         string $message
     ): JsonResponse {
-        $driver = RemoteWebDriver::create($this->host, DesiredCapabilities::chrome());
+        $options = new ChromeOptions();
+        $options->addArguments(['--no-sandbox', '--disable-dev-shm-usage', '--headless']);
+
+        $capabilities = DesiredCapabilities::chrome();
+        $capabilities->setCapability(ChromeOptions::CAPABILITY, $options);
+
+        $driver = RemoteWebDriver::create($this->host, $capabilities);
 
         try {
             $driver->get('https://www.facebook.com/');
@@ -37,7 +44,7 @@ final class FacebookClient extends AbstractFacebookClient implements SendMessage
             $messageBox = $driver->findElement(WebDriverBy::cssSelector('div[aria-label="Wiadomość"][contenteditable="true"]'));
             $messageBox->sendKeys($message); sleep(random_int(3, 9));
 
-            $driver->takeScreenshot($this->fileName());
+            $driver->takeScreenshot('screen.png');
 
             $driver->executeScript(
                 'arguments[0].dispatchEvent(new KeyboardEvent("keydown", {key: "Enter"}));',
