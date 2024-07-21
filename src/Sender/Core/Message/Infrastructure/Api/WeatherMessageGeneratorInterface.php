@@ -13,5 +13,5 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 interface WeatherMessageGeneratorInterface
 {
-    public function generateWeatherMessage(JsonResponse $weatherData): string;
+    public function generateWeatherMessage(JsonResponse $weatherData): JsonResponse;
 }

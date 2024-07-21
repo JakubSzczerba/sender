@@ -31,6 +31,8 @@ services:
       FACEBOOK_PASSWORD: "your_password"
       FACEBOOK_GROUP_ID: "some_id"
       OPEN_AI_API_KEY: "your_key"
+      HUGGING_FACE_INFERENCE_API_KEY: "your_key"
+      HUGGING_FACE_INFERENCE_API_URL: "https://api-inference.huggingface.co/models/"
   nginx:
     image: nginx:1.19
     ports:
