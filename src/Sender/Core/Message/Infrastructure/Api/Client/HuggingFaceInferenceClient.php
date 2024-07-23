@@ -9,12 +9,13 @@ declare(strict_types=1);
 
 namespace Sender\Sender\Core\Message\Infrastructure\Api\Client;
 
-use Sender\Sender\Core\Message\Infrastructure\Api\Client\Foundation\AbstractOpenAIClient;
+use Sender\Sender\Core\Message\Infrastructure\Api\Client\Foundation\AbstractHuggingFaceInferenceClient;
+use Sender\Sender\Core\Message\Infrastructure\Api\WeatherMessageGeneratorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-final class OpenAIClient extends AbstractOpenAIClient
+final class HuggingFaceInferenceClient extends AbstractHuggingFaceInferenceClient implements WeatherMessageGeneratorInterface
 {
-    public function generateWeatherMessage(JsonResponse $weatherData): string
+    public function generateWeatherMessage(JsonResponse $weatherData): JsonResponse
     {
         $prompt = "
         Wygeneruj wiadomość pogodową po polsku, na podstawie poniższych danych. Ma być ładnie opisana oraz mają być
@@ -22,6 +23,6 @@ final class OpenAIClient extends AbstractOpenAIClient
         {$weatherData}. 
         ";
 
-        return $this->callOpenAI($prompt);
+        return $this->executeRequest($prompt);
     }
 }

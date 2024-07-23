@@ -2,6 +2,7 @@ imports:
     - { resource: 'services/weather/api/open_weather_map_client.yaml' }
     - { resource: 'services/facebook/selenium/facebook_client.yaml' }
     - { resource: 'services/openAi/api/open_ai_client.yaml' }
+    - { resource: 'services/huggingFace/api/hugging_face_inference_client.yaml'}
 
 services:
     GuzzleHttp\Client:
