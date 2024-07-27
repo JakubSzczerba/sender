@@ -1,0 +1,14 @@
+parameters:
+  hugging_face_inference_api_key: '%env(HUGGING_FACE_INFERENCE_API_KEY)%'
+  hugging_face_inference_api_url: '%env(HUGGING_FACE_INFERENCE_API_URL)%'
+
+services:
+  Sender\Sender\Core\Message\Infrastructure\Api\Client\HuggingFaceInferenceClient:
+    class: Sender\Sender\Core\Message\Infrastructure\Api\Client\HuggingFaceInferenceClient
+    arguments:
+      $key: '%hugging_face_inference_api_key%'
+      $url: '%hugging_face_inference_api_url%'
+      $client: '@GuzzleHttp\Client'
+
+  Sender\Sender\Core\Message\Infrastructure\Api\WeatherMessageGeneratorInterface:
+    alias: Sender\Sender\Core\Message\Infrastructure\Api\Client\HuggingFaceInferenceClient

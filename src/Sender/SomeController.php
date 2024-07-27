@@ -46,7 +46,7 @@ class SomeController extends AbstractController
         return $this->sendMessage->sendMessageToGroup($groupId, $message);
     }
 
-    public function generateText(): string
+    public function generateText(): JsonResponse
     {
         $weatherData = $this->cityWeather->getWeatherByCity('Słupsk');
 
